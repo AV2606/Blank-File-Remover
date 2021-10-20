@@ -8,11 +8,11 @@ namespace BlankFilesRemover
 {
     public class Directory:File
     {
-        public override int Size
+        public override long Size
         {
             get
             {
-                int r = 0;
+                long r = 0;
                 foreach (var item in GetFiles())
                 {
                     r += item.Size;
@@ -64,13 +64,28 @@ namespace BlankFilesRemover
             }
             return r;
         }
-
+        public static List<File> FindEmptyFiles(Directory d)
+        {
+            var files = d.GetFiles();
+            var r = new List<File>();
+            foreach (var item in files)
+            {
+                if (item is File fl&&fl.Size==0)
+                    r.Add(item);
+                if (item is Directory dir)
+                    r.AddRange(FindEmptyFiles(dir));
+            }
+            return r;
+        }
+    }
+    public static class DirectoryExtensions
+    {
         /// <summary>
         /// Deletes all the files that are empty (does not include directories), and gets their paths.
         /// </summary>
         /// <param name="d">The directory to look into.</param>
         /// <returns>Returns the paths of all the files that has been deleted.</returns>
-        public static string[] DeleteEmptyFiles(Directory d)
+        public static string[] DeleteEmptyFiles(this Directory d)
         {
             var files = d.GetFiles();
             List<string> r = new List<string>();
@@ -85,23 +100,10 @@ namespace BlankFilesRemover
                     if (item.Size == 0)
                     {
                         r.Add(item.Path);
-                        item.Delete(); 
+                        item.Delete();
                     }
             }
             return r.ToArray();
-        }
-        public static List<File> FindEmptyFiles(Directory d)
-        {
-            var files = d.GetFiles();
-            var r = new List<File>();
-            foreach (var item in files)
-            {
-                if (item is File fl&&fl.Size==0)
-                    r.Add(item);
-                if (item is Directory dir)
-                    r.AddRange(FindEmptyFiles(dir));
-            }
-            return r;
         }
     }
     

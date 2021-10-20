@@ -9,6 +9,6 @@
         /// <summary>
         /// The size (in bytes) of the file.
         /// </summary>
-        public int Size { get; }
+        public long Size { get; }
     }
 }

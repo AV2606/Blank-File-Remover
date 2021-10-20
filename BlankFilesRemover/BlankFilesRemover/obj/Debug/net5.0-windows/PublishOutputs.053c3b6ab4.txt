@@ -1,0 +1,5 @@
+C:\Users\avich\source\repos\BlankFilesRemover\BlankFilesRemover\bin\Debug\net5.0-windows\publish\BlankFilesRemover.exe
+C:\Users\avich\source\repos\BlankFilesRemover\BlankFilesRemover\bin\Debug\net5.0-windows\publish\BlankFilesRemover.dll
+C:\Users\avich\source\repos\BlankFilesRemover\BlankFilesRemover\bin\Debug\net5.0-windows\publish\BlankFilesRemover.deps.json
+C:\Users\avich\source\repos\BlankFilesRemover\BlankFilesRemover\bin\Debug\net5.0-windows\publish\BlankFilesRemover.runtimeconfig.json
+C:\Users\avich\source\repos\BlankFilesRemover\BlankFilesRemover\bin\Debug\net5.0-windows\publish\BlankFilesRemover.pdb

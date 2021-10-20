@@ -14,12 +14,14 @@ namespace BlankFilesRemover
         /// </summary>
         public readonly static Folder recycleBin = shell.NameSpace(10);
 
-        
+
+        private System.IO.FileInfo info;
+
         public string Path { get; protected set; }
-        public virtual int Size { get { 
+        public virtual long Size { get { 
                 if(this.Deleted)
                     throw new DeletedFileException("The file has been deleted!");
-                return System.IO.File.ReadAllTextAsync(Path).Result.Length * 4; 
+                return this.info.Length;
             } }
         /// <summary>
         /// Indicates that the file has been deleted.
@@ -33,6 +35,7 @@ namespace BlankFilesRemover
         public File(string path)
         {
             this.Path = path;
+            this.info = new System.IO.FileInfo(path);
         }
         /// <summary>
         /// Deletes the file premenantly.
